@@ -829,16 +829,24 @@ PrefabInstance:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6200849644427433737, guid: 643c1ef826e0c7845a0e4d008be95950, type: 3}
+      propertyPath: m_BackGroundColor.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6200849644427433737, guid: 643c1ef826e0c7845a0e4d008be95950, type: 3}
       propertyPath: m_BackGroundColor.b
-      value: 0.6360149
+      value: 0.38
       objectReference: {fileID: 0}
     - target: {fileID: 6200849644427433737, guid: 643c1ef826e0c7845a0e4d008be95950, type: 3}
       propertyPath: m_BackGroundColor.g
-      value: 0.67058825
+      value: 0.047
       objectReference: {fileID: 0}
     - target: {fileID: 6200849644427433737, guid: 643c1ef826e0c7845a0e4d008be95950, type: 3}
       propertyPath: m_BackGroundColor.r
-      value: 0.3647059
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6200849644427433737, guid: 643c1ef826e0c7845a0e4d008be95950, type: 3}
+      propertyPath: m_CullingMask.m_Bits
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 6200849644543761786, guid: 643c1ef826e0c7845a0e4d008be95950, type: 3}
       propertyPath: m_Name
