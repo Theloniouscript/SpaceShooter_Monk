@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 using SpaceShooter;
+=======
+﻿using SpaceShooter;
+>>>>>>> SS_20.6.4
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -17,15 +21,34 @@ namespace SpaceShooter
 
         public SpaceShip ActiveShip => m_Ship;
 
+<<<<<<< HEAD
         private void Start()
         {
             m_Ship.EventOnDeath.AddListener(OnShipDeath);
             Debug.Log($"start m_NumLives = {m_NumLives}");
             m_NumLives++;
+=======
+        /// <summary>
+        /// Присвоить игроку выбранный корабль
+        /// </summary>
+        /*protected override void Awake()
+        {
+            base.Awake();
+            if (m_Ship != null) Destroy(m_Ship.gameObject);
+        }*/
+
+        private void Start()
+        {
+            Respawn();
+           /* m_Ship.EventOnDeath.AddListener(OnShipDeath);
+            Debug.Log($"start m_NumLives = {m_NumLives}");
+            m_NumLives++;*/
+>>>>>>> SS_20.6.4
         }
 
         private void OnShipDeath()
         {
+<<<<<<< HEAD
             if(m_Ship.EventOnDeath != null)
                 m_NumLives--;
                 Debug.Log($"m_NumLives = {m_NumLives}");
@@ -35,6 +58,27 @@ namespace SpaceShooter
 
                 //Invoke("Respawn", 2);
             
+=======
+            /*if (m_Ship.EventOnDeath != null)*/
+                m_NumLives--;
+             Debug.Log($"m_NumLives = {m_NumLives}");
+
+            if (m_NumLives > 0)
+            {
+                Respawn();
+                Debug.Log("Respawn");
+            }              
+
+            else
+            { 
+                LevelSequenceController.Instance.FinishCurrentLevel(true); // выход в главное меню, если заканчивается уровень
+                Debug.Log("End Level");
+            }
+
+
+            //Invoke("Respawn", 2);
+
+>>>>>>> SS_20.6.4
 
 
 
@@ -42,6 +86,7 @@ namespace SpaceShooter
 
         public void Respawn()
         {
+<<<<<<< HEAD
             var newPlayerShip = Instantiate(m_PlayerShipPrefab);
             m_Ship = newPlayerShip.GetComponent<SpaceShip>();
 
@@ -49,6 +94,21 @@ namespace SpaceShooter
             m_MovementController.SetTargetShip(m_Ship);
 
             m_Ship.EventOnDeath.AddListener(OnShipDeath);
+=======
+            if (LevelSequenceController.PlayerShip != null)
+            {
+                //var newPlayerShip = Instantiate(m_PlayerShipPrefab);
+                var newPlayerShip = Instantiate(LevelSequenceController.PlayerShip);
+                m_Ship = newPlayerShip.GetComponent<SpaceShip>();
+
+                m_CameraController.SetTarget(m_Ship.transform);
+                m_MovementController.SetTargetShip(m_Ship);
+
+                m_Ship.EventOnDeath.AddListener(OnShipDeath);
+            }
+
+            
+>>>>>>> SS_20.6.4
         }
 
         #region Score

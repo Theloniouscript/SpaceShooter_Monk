@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
+using UnityEngine.Events;
 
 namespace SpaceShooter
 {
@@ -10,6 +12,7 @@ namespace SpaceShooter
     /// </summary>
     public class LevelBoundaryLimiter : MonoBehaviour
     {
+        
         private void Update()
         {
             if (LevelBoundary.Instance == null) return;
@@ -26,6 +29,17 @@ namespace SpaceShooter
                 if(lb.LimitMode == LevelBoundary.Mode.Teleport) 
                 {
                     transform.position = - transform.position.normalized * r;
+                }
+
+                if(lb.LimitMode == LevelBoundary.Mode.Death)
+                {
+                    Destroy(gameObject);
+                    
+                    
+                    
+                        
+                    
+                    
                 }
             }
         }

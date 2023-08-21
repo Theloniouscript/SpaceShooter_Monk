@@ -30,7 +30,8 @@ namespace SpaceShooter
         public enum Mode
         {
              Limit, 
-             Teleport           
+             Teleport, 
+             Death
 
         }
 

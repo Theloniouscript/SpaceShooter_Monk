@@ -22,7 +22,6 @@ namespace SpaceShooter
 
             m_QuadMaterial.mainTextureScale = Vector2.one * m_TextureScale;
 
-            print(m_InitialOffset);
         }
 
         private void Update()

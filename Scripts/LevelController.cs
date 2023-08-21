@@ -55,7 +55,11 @@ namespace SpaceShooter
                 m_IsLevelCompleted = true;
                 m_EventLevelCompleted?.Invoke();
 
+<<<<<<< HEAD
                 LevelSequenceController.Instance?.FinishCurrentLevel(true);
+=======
+                //LevelSequenceController.Instance?.FinishCurrentLevel(true);
+>>>>>>> SS_20.6.4
             }
         }
     }

@@ -455,14 +455,26 @@ MonoBehaviour:
   m_Nickname: Player
   m_Indestructible: 0
   m_HitPoints: 100
+<<<<<<< HEAD
   m_EventOnDeath:
     m_PersistentCalls:
       m_Calls: []
+=======
+  m_TeamId: 0
+  m_EventOnDeath:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ScoreValue: 0
+>>>>>>> SS_20.6.4
   m_Mass: 1
   m_Thrust: 1000
   m_Mobility: 2000
   m_MaxLinearVelocity: 15
   m_MaxAngularVelocity: 360
+<<<<<<< HEAD
+=======
+  m_PreviewImage: {fileID: 21300000, guid: c8b80b0b885a43a4fb856fcd841ba235, type: 3}
+>>>>>>> SS_20.6.4
   m_Turrets:
   - {fileID: 1337003155}
   - {fileID: 1156926911}

@@ -210,8 +210,13 @@ namespace SpaceShooter
             foreach (var v in Destructible.AllDestructibles)
             {
                 Debug.Log("foreach AllDestructibles");
+<<<<<<< HEAD
                 if (v.GetComponent<SpaceShip>() == m_SpaceShip)
                     continue;
+=======
+               /* if (v.GetComponent<SpaceShip>() == m_SpaceShip)
+                    continue;*/
+>>>>>>> SS_20.6.4
 
                 if (v.TeamId == Destructible.TeamIdNeutral)
                     continue;

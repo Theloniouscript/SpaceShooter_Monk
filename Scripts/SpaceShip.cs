@@ -30,11 +30,25 @@ namespace SpaceShooter
         /// Max linear speed - forward speed limiter
         /// </summary>
         [SerializeField] private float m_MaxLinearVelocity;
+<<<<<<< HEAD
+=======
+        public float MaxLinearVelocity => m_MaxLinearVelocity;
+>>>>>>> SS_20.6.4
 
         /// <summary>
         /// Max angular / rotating speed - in degree/second
         /// </summary>
         [SerializeField] private float m_MaxAngularVelocity;
+<<<<<<< HEAD
+=======
+        public float MaxAngularVelocity => m_MaxAngularVelocity;
+
+        /// <summary>
+        /// PlayerShip Image, used for ShipSelection in MainMenuScene via PlayerShipSelection panel
+        /// </summary>
+        [SerializeField] private Sprite m_PreviewImage;
+        public Sprite PreviewImage => m_PreviewImage;
+>>>>>>> SS_20.6.4
 
         /// <summary>
         /// Saved link to rigid

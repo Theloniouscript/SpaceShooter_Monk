@@ -7,6 +7,7 @@ namespace SpaceShooter
     public class Turret : MonoBehaviour
     {
         [SerializeField] private TurretMode m_Mode;
+       // [SerializeField] private GameObject boomPrefab;
         public TurretMode Mode => m_Mode;
 
         [SerializeField] private TurretProperties m_TurretProperties;
@@ -62,8 +63,18 @@ namespace SpaceShooter
             {
                 // SFX
             }
+
+            /*if (boomPrefab != null)
+            {
+                var explosion = Instantiate(boomPrefab, transform.position, Quaternion.identity);
+                Destroy(explosion, 1f);
+            }*/
         }
 
+        /// <summary>
+        /// Задаем Scriptable Object (турель) не через инспектор, а через код - см. Powerup и дочерние классы
+        /// </summary>
+        /// <param name="props"></param>
         public void AssignLoadOut(TurretProperties props)
         {
             if (m_Mode != props.Mode) return;

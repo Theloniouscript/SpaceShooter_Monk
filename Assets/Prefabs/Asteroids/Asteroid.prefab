@@ -69,11 +69,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Nickname: 
   m_Indestructible: 0
-  explosionPrefab: {fileID: 0}
-  m_HitPoints: 100
+  m_HitPoints: 1
+  m_TeamId: 1
   m_EventOnDeath:
     m_PersistentCalls:
       m_Calls: []
+  m_ScoreValue: 15
 --- !u!1 &7463706272623994636
 GameObject:
   m_ObjectHideFlags: 0
