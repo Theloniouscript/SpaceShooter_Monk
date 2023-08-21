@@ -198,16 +198,17 @@ MonoBehaviour:
   m_Nickname: Player
   m_Indestructible: 0
   m_HitPoints: 100
-  m_TeamId: 0
+  m_TeamId: 2
   m_EventOnDeath:
     m_PersistentCalls:
       m_Calls: []
-  m_ScoreValue: 200
+  m_ScoreValue: 25
   m_Mass: 1
   m_Thrust: 1000
   m_Mobility: 2000
   m_MaxLinearVelocity: 15
   m_MaxAngularVelocity: 360
+  m_PreviewImage: {fileID: 0}
   m_Turrets:
   - {fileID: 7598449201063264453}
   - {fileID: 7598449201218732521}

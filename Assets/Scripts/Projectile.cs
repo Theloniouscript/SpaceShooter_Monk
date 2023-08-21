@@ -34,6 +34,7 @@ namespace SpaceShooter
                     if (m_Parent == Player.Instance.ActiveShip)
                     {
                         Player.Instance.AddScore(dest.ScoreValue);
+                        Player.Instance.AddKill();
                     }
 
                 }

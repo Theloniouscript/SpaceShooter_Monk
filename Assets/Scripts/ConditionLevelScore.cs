@@ -8,6 +8,7 @@ namespace SpaceShooter
     {
         [SerializeField] private int score;
         private bool m_Reached;
+        
 
         bool ILevelCondition.IsCompleted 
         { get 
@@ -17,11 +18,12 @@ namespace SpaceShooter
                     {
                         m_Reached= true;
                         Debug.Log("Reached!");
+                        LevelSequenceController.Instance.FinishCurrentLevel(true);
+                        
                     }
                 }
             return m_Reached;
             } 
-        }
-
+        }       
     }
 }

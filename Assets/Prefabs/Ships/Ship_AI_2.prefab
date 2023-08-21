@@ -379,12 +379,13 @@ MonoBehaviour:
   m_EventOnDeath:
     m_PersistentCalls:
       m_Calls: []
-  m_ScoreValue: 300
+  m_ScoreValue: 50
   m_Mass: 1
   m_Thrust: 1000
   m_Mobility: 2000
   m_MaxLinearVelocity: 15
   m_MaxAngularVelocity: 360
+  m_PreviewImage: {fileID: 0}
   m_Turrets:
   - {fileID: 3159015008188607458}
   - {fileID: 3159015008008006350}

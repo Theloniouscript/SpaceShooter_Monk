@@ -6,7 +6,7 @@ namespace SpaceShooter
     public class LevelSequenceController : SingletonBase<LevelSequenceController>
     {
         public static string MainMenuSceneNickname = "main_menu";
-        public static SpaceShip PlayerShip { get; set; }
+        public static SpaceShip PlayerShip { get; set; }        
 
         public Episode CurrentEpisode { get; private set; }
 
@@ -54,9 +54,13 @@ namespace SpaceShooter
                 SceneManager.LoadScene(CurrentEpisode.Levels[CurrentLevel]);
             }
         }
+
+        
         public void FinishCurrentLevel(bool success)
         {
             LastLevelResult = success;
+            
+            
             CalculateLevelStatistics();
             ResultPanelController.Instance.ShowResults(LevelStatistics, success);
 
@@ -71,7 +75,9 @@ namespace SpaceShooter
         {
             LevelStatistics.score = Player.Instance.Score;
             LevelStatistics.numKills= Player.Instance.NumKills;
-            LevelStatistics.time = (int)LevelController.Instance.LevelTime;            
+            LevelStatistics.time = (int)LevelController.Instance.LevelTime;
+            LevelStatistics.bonus = Player.Instance.Bonus;
+            
         }
     }
 }

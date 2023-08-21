@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 namespace SpaceShooter
 {
@@ -127,6 +128,10 @@ namespace SpaceShooter
 
         private float m_PrimaryEnergy;
         private int m_SecondaryAmmo;
+       // public int m_BonusCount { get; private set; }
+        
+        
+       
 
         [SerializeField] private int m_MaxArmor;
 
@@ -140,13 +145,17 @@ namespace SpaceShooter
         public void AddEnergy(int e)
         {
             m_PrimaryEnergy = Mathf.Clamp(m_PrimaryEnergy + e, 0, m_MaxEnergy);
-            
+            //BonusCount();
+            Player.Instance.AddBonus();
+
         }
 
         public void AddAmmo(int ammo)
         {
             m_SecondaryAmmo = Mathf.Clamp(m_SecondaryAmmo + ammo, 0, m_MaxAmmo);
-            
+            //BonusCount();
+            Player.Instance.AddBonus();
+
         }
 
         public void AddArmor(int armor)
@@ -155,72 +164,89 @@ namespace SpaceShooter
             m_CurrentArmor = Mathf.Clamp(m_CurrentArmor + armor, 0, m_MaxArmor);
             Debug.Log($"added armor = {m_CurrentArmor}");
             m_Armor = m_CurrentArmor;
+            //BonusCount();
+            Player.Instance.AddBonus();
 
         }
 
-       /* public void DrawArmor(int count)
-        {
-            if (count > 0)
+        /*public void BonusCount()
+        {           
+            m_BonusCount++;            
+            Debug.Log("Overall powerup bonuses: " + m_BonusCount);
+            int currentBonus = m_BonusCount;
+
+            if (m_LastBonus != currentBonus)
             {
-                
-                if (m_CurrentArmor >= count)
-                {
-                    m_CurrentArmor -= count;
-                    Debug.Log($"draw armor = {m_CurrentArmor}");
-                    m_Armor = m_CurrentArmor;
-                }
+                m_LastBonus = currentBonus;
+                m_Text.text = "Bonuses: " + m_LastBonus.ToString();
             }
-        }
+
+
+        }       
 */
+        /* public void DrawArmor(int count)
+         {
+             if (count > 0)
+             {
+
+                 if (m_CurrentArmor >= count)
+                 {
+                     m_CurrentArmor -= count;
+                     Debug.Log($"draw armor = {m_CurrentArmor}");
+                     m_Armor = m_CurrentArmor;
+                 }
+             }
+         }
+ */
 
         /*protected override void OnDeath()
         {
             
             if (m_CurrentArmor == 0)
             {*/
-            
-              // Destroy(gameObject);
-                //m_EventOnDeath?.Invoke();
 
-            //}
+        // Destroy(gameObject);
+        //m_EventOnDeath?.Invoke();
 
-            /*Destroy(gameObject);
-            m_EventOnDeath?.Invoke();*/
+        //}
 
-            /*for(int i = 0; i < m_Armor; i ++)
+        /*Destroy(gameObject);
+        m_EventOnDeath?.Invoke();*/
+
+        /*for(int i = 0; i < m_Armor; i ++)
+        {
+            m_CurrentHitpoints--;
+            m_Armor--;
+
+            if(m_Armor == 0)
             {
-                m_CurrentHitpoints--;
-                m_Armor--;
-
-                if(m_Armor == 0)
-                {
-                    Destroy(gameObject);
-                    m_EventOnDeath?.Invoke();
-                }
-                    
+                Destroy(gameObject);
+                m_EventOnDeath?.Invoke();
             }
-        }*/
+
+        }
+    }*/
 
         // [SerializeField] private UnityEvent m_EventOnDeath;
         //public new UnityEvent EventOnDeath => m_EventOnDeath;
 
-       /* public override void ApplyDamage(int damage)
-        {
-            Debug.Log($"damage = {damage}");
-            DrawArmor(damage);  
-            // m_CurrentArmor--;
-            base.ApplyDamage(damage);
-           // m_CurrentArmor = Mathf.Clamp(m_CurrentArmor - damage, 0, m_MaxArmor);
-            Debug.Log($"after damage = {m_CurrentArmor}");
+        /* public override void ApplyDamage(int damage)
+         {
+             Debug.Log($"damage = {damage}");
+             DrawArmor(damage);  
+             // m_CurrentArmor--;
+             base.ApplyDamage(damage);
+            // m_CurrentArmor = Mathf.Clamp(m_CurrentArmor - damage, 0, m_MaxArmor);
+             Debug.Log($"after damage = {m_CurrentArmor}");
 
 
-            *//*if (m_CurrentArmor <= 0)
-            {
-                OnDeath();
-            }*//*
+             *//*if (m_CurrentArmor <= 0)
+             {
+                 OnDeath();
+             }*//*
 
-        }
-*/
+         }
+ */
 
 
 
@@ -240,8 +266,10 @@ namespace SpaceShooter
         /// </summary>
         private void UpdateEnergyRegen()
         {
+            InitOffensive();
             m_PrimaryEnergy += (float)m_EnergyRegenPerSecond * Time.fixedDeltaTime;
             m_PrimaryEnergy = Mathf.Clamp(m_PrimaryEnergy, 0, m_MaxEnergy);
+            Debug.Log("UpdateEnergy");
         }
 
         /// <summary>

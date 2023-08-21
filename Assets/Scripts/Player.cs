@@ -9,6 +9,8 @@ namespace SpaceShooter
     public class Player : SingletonBase<Player>
     {
         [SerializeField] private int m_NumLives;
+        public int NumLives => m_NumLives;
+
         [SerializeField] private SpaceShip m_Ship;
         [SerializeField] private GameObject m_PlayerShipPrefab;
 
@@ -43,15 +45,16 @@ namespace SpaceShooter
             }
 
             if (m_NumLives > 0)
-            {
-                Respawn();
-                Debug.Log("Respawn");
+            {               
+                    Respawn();
+                    Debug.Log("Respawn");             
             }              
 
-            else
+            else 
             { 
-                LevelSequenceController.Instance.FinishCurrentLevel(true); // выход в главное меню, если заканчивается уровень
-                Debug.Log("End Level");
+                LevelSequenceController.Instance.FinishCurrentLevel(false); // выход в главное меню, если заканчивается уровень
+                Debug.Log("End Level LOSE");
+                
             }
 
 
@@ -84,6 +87,8 @@ namespace SpaceShooter
         public int Score { get; private set; }
         public int NumKills { get; private set; }
 
+        public int Bonus { get; private set; }  
+
         public void AddKill()
         {
             NumKills++;
@@ -92,6 +97,12 @@ namespace SpaceShooter
         public void AddScore(int num)
         {
             Score += num;
+        }
+
+        public void AddBonus()
+        {
+            Bonus++;
+            Debug.Log("Bonuses: " + Bonus);
         }
 
         #endregion
