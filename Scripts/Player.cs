@@ -1,4 +1,4 @@
-using SpaceShooter;
+﻿using SpaceShooter;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -17,24 +17,44 @@ namespace SpaceShooter
 
         public SpaceShip ActiveShip => m_Ship;
 
+        /// <summary>
+        /// Присвоить игроку выбранный корабль
+        /// </summary>
+        /*protected override void Awake()
+        {
+            base.Awake();
+            if (m_Ship != null) Destroy(m_Ship.gameObject);
+        }*/
+
         private void Start()
         {
-            m_Ship.EventOnDeath.AddListener(OnShipDeath);
+            Respawn();
+           /* m_Ship.EventOnDeath.AddListener(OnShipDeath);
             Debug.Log($"start m_NumLives = {m_NumLives}");
-            m_NumLives++;
+            m_NumLives++;*/
         }
 
         private void OnShipDeath()
         {
-            if(m_Ship.EventOnDeath != null)
+            /*if (m_Ship.EventOnDeath != null)*/
                 m_NumLives--;
-                Debug.Log($"m_NumLives = {m_NumLives}");
+             Debug.Log($"m_NumLives = {m_NumLives}");
 
-            if(m_NumLives > 0)
+            if (m_NumLives > 0)
+            {
                 Respawn();
+                Debug.Log("Respawn");
+            }              
 
-                //Invoke("Respawn", 2);
-            
+            else
+            { 
+                LevelSequenceController.Instance.FinishCurrentLevel(true); // выход в главное меню, если заканчивается уровень
+                Debug.Log("End Level");
+            }
+
+
+            //Invoke("Respawn", 2);
+
 
 
 
@@ -42,13 +62,19 @@ namespace SpaceShooter
 
         public void Respawn()
         {
-            var newPlayerShip = Instantiate(m_PlayerShipPrefab);
-            m_Ship = newPlayerShip.GetComponent<SpaceShip>();
+            if (LevelSequenceController.PlayerShip != null)
+            {
+                //var newPlayerShip = Instantiate(m_PlayerShipPrefab);
+                var newPlayerShip = Instantiate(LevelSequenceController.PlayerShip);
+                m_Ship = newPlayerShip.GetComponent<SpaceShip>();
 
-            m_CameraController.SetTarget(m_Ship.transform);
-            m_MovementController.SetTargetShip(m_Ship);
+                m_CameraController.SetTarget(m_Ship.transform);
+                m_MovementController.SetTargetShip(m_Ship);
 
-            m_Ship.EventOnDeath.AddListener(OnShipDeath);
+                m_Ship.EventOnDeath.AddListener(OnShipDeath);
+            }
+
+            
         }
 
         #region Score

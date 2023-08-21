@@ -5,6 +5,7 @@ namespace SpaceShooter
     public class LevelSequenceController : SingletonBase<LevelSequenceController>
     {
         public static string MainMenuSceneNickname = "main_menu";
+        public static SpaceShip PlayerShip { get; set; }
 
         public Episode CurrentEpisode { get; private set; }
 
@@ -44,7 +45,8 @@ namespace SpaceShooter
         }
         public void FinishCurrentLevel(bool success)
         {
-
+            if (success)
+                AdvanceLevel();
         }
 
     }

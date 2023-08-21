@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d29d98836bf7ae44a39d773833ac369, type: 3}
   m_Name: Episode_C
   m_EditorClassIdentifier: 
-  m_EpisodeName: Episode A
+  m_EpisodeName: Episode C
   m_Levels:
   - scene_main
   m_PreviewImage: {fileID: 0}
