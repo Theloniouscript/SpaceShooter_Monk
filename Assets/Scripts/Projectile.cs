@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
@@ -20,14 +20,25 @@ namespace SpaceShooter
             Vector2 step = transform.up * stepLength;
 
             RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.up, stepLength);
+
+            // Наносим урон
             if(hit)
             {
-                Destructible dest = hit.collider.transform.root.GetComponent<Destructible>();  
+                Destructible dest = hit.collider.transform.root.GetComponent<Destructible>();
+                
 
-                if(dest != null && dest != m_Parent)
+                if (dest != null && dest != m_Parent)
                 {
                     dest.ApplyDamage(m_Damage);
+
+                    if (m_Parent == Player.Instance.ActiveShip)
+                    {
+                        Player.Instance.AddScore(dest.ScoreValue);
+                    }
+
                 }
+
+
 
                 OnProjectileLifeEnd(hit.collider, hit.point);
             }

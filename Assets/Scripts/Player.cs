@@ -50,5 +50,22 @@ namespace SpaceShooter
 
             m_Ship.EventOnDeath.AddListener(OnShipDeath);
         }
+
+        #region Score
+
+        public int Score { get; private set; }
+        public int NumKills { get; private set; }
+
+        public void AddKill()
+        {
+            NumKills++;
+        }
+
+        public void AddScore(int num)
+        {
+            Score += num;
+        }
+
+        #endregion
     }
 }

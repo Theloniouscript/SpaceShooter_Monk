@@ -114,6 +114,12 @@ namespace SpaceShooter
         [SerializeField] private UnityEvent m_EventOnDeath;
         public UnityEvent EventOnDeath => m_EventOnDeath;
 
+        #region Score
+
+        [SerializeField] private int m_ScoreValue;
+        public int ScoreValue => m_ScoreValue;
+
+        #endregion
 
     }
 }
