@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f846f86a8c2fd744902b209ea01b53e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  score: 100
+  score: 75
 --- !u!1 &1479786513
 GameObject:
   m_ObjectHideFlags: 0
@@ -91,7 +91,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_DontDestroyOnLoad: 0
-  m_ReferenceTime: 50
+  m_ReferenceTime: 25
   m_EventLevelCompleted:
     m_PersistentCalls:
       m_Calls:
@@ -537,7 +537,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_DontDestroyOnLoad: 0
-  m_NumLives: 3
+  m_NumLives: 5
   m_Ship: {fileID: 0}
   m_PlayerShipPrefab: {fileID: 0}
   m_CameraController: {fileID: 6200849643694441296}
@@ -809,7 +809,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.67058825, g: 0.48561198, b: 0.3647059, a: 0}
+  m_BackGroundColor: {r: 0, g: 0.047, b: 0.38, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -830,7 +830,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 2147483647
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -1174,16 +1174,20 @@ PrefabInstance:
       value: SpaceShooter.ResultPanelController, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 5225922796989049819, guid: a3fe6d9c289bc3447a0377c9e35531c6, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 2f5f88874246f4ebbaca620f3cd37fad, type: 3}
+    - target: {fileID: 5225922796989049819, guid: a3fe6d9c289bc3447a0377c9e35531c6, type: 3}
       propertyPath: m_Color.b
-      value: 0.63221556
+      value: 0.9529412
       objectReference: {fileID: 0}
     - target: {fileID: 5225922796989049819, guid: a3fe6d9c289bc3447a0377c9e35531c6, type: 3}
       propertyPath: m_Color.g
-      value: 0.090067655
+      value: 0.031372532
       objectReference: {fileID: 0}
     - target: {fileID: 5225922796989049819, guid: a3fe6d9c289bc3447a0377c9e35531c6, type: 3}
       propertyPath: m_Color.r
-      value: 0.8301887
+      value: 0.9297164
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a3fe6d9c289bc3447a0377c9e35531c6, type: 3}
@@ -1286,6 +1290,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 2347929951509806202}
+    - target: {fileID: 5225922796989049819, guid: a3fe6d9c289bc3447a0377c9e35531c6, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: ff8821736c16349d4b3c8dc2f5ccedcf, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a3fe6d9c289bc3447a0377c9e35531c6, type: 3}
 --- !u!1001 &6248266265144447604
