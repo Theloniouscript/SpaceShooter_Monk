@@ -571,6 +571,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 705462269, guid: 643c1ef826e0c7845a0e4d008be95950, type: 3}
+      propertyPath: score
+      value: 125
+      objectReference: {fileID: 0}
     - target: {fileID: 1479786515, guid: 643c1ef826e0c7845a0e4d008be95950, type: 3}
       propertyPath: m_ReferenceTime
       value: 75

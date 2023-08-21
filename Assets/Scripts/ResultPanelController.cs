@@ -13,7 +13,7 @@ namespace SpaceShooter
         [SerializeField] private Text m_Time;
         [SerializeField] private Text m_Result;
         [SerializeField] private Text m_BonusCount;
-        [SerializeField] private Text m_ButtonNextText;
+        [SerializeField] private Text m_ButtonNextText;        
 
         public static SpaceShip PlayerShip { get; set; }
 
@@ -22,8 +22,8 @@ namespace SpaceShooter
 
         private void Start()
         {
-            gameObject.SetActive(false);
-        }
+            gameObject.SetActive(false);            
+        }       
 
         /// <summary>
         /// Panel and button text depending on player results
@@ -51,11 +51,11 @@ namespace SpaceShooter
             Time.timeScale = 1;
 
             if(m_Success)
-            {
-                LevelSequenceController.Instance.AdvanceLevel(); // if level is won
+            {                
+                LevelSequenceController.Instance.AdvanceLevel(); // if level is won                                                  
             }
             else
-            {
+            {                
                 LevelSequenceController.Instance.RestartLevel(); // if level is lost
             }
         }
