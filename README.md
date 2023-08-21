@@ -1,2 +1,2 @@
-# SpaceShooter_Monk
-Classic SpaceShooter with AI-ships.
+# SpaceShooter
+SpaceShooter game made as a part of training course

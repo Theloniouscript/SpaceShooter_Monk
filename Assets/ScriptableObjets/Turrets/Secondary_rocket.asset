@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Secondary_rocket
   m_EditorClassIdentifier: 
   m_Mode: 1
-  m_ProjectilePrefab: {fileID: 0}
+  m_ProjectilePrefab: {fileID: 3356202115739051664, guid: d948f8bdbb0445f45ad847434c922625, type: 3}
   m_RateOfFire: 1
   m_EnergyUsage: 0
   m_AmmoUsage: 1

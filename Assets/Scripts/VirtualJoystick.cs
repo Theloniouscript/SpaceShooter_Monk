@@ -31,7 +31,7 @@ namespace SpaceShooter
             if (Value.magnitude > 1)
                 Value = Value.normalized;
 
-            Debug.Log(Value);
+            //Debug.Log(Value);
 
             float offsetX = m_Joyback.rectTransform.sizeDelta.x / 2 - m_Joystick.rectTransform.sizeDelta.x / 2;
             float offsetY = m_Joyback.rectTransform.sizeDelta.y / 2 - m_Joystick.rectTransform.sizeDelta.y / 2;

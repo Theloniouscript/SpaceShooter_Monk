@@ -26,6 +26,7 @@ namespace SpaceShooter
         [SerializeField] private float m_ShootDelay;
         [SerializeField] private float m_AvoidRayLength;
 
+        /*[SerializeField] private AIPointPatrol[] m_PatrolPoints;*/
         [SerializeField] private AIPointPatrol m_PatrolPoint;
 
         private SpaceShip m_SpaceShip;
@@ -39,32 +40,41 @@ namespace SpaceShooter
         /// </summary>
         private Destructible m_SelectedTarget;
 
-        private Timer TestTimer;
-
-
-
-        /*for test
+        /*//*for test
          * 
-         * private void Start()
-        {
-            TestTimer = new Timer(3);
-        }
+         * private Timer TestTimer;
 
-        private void Update()
-        {
-            TestTimer.RemoveTime(Time.deltaTime);
 
-            if(TestTimer.IsFinished == true)
-            {
-                Debug.Log("Test");
-                TestTimer.Start(3);
-            }
-        }*/
 
+          * 
+          * private void Start()
+         {
+             TestTimer = new Timer(3);
+         }
+
+         private void Update()
+         {
+             TestTimer.RemoveTime(Time.deltaTime);
+
+             if(TestTimer.IsFinished == true)
+             {
+                 Debug.Log("Test");
+                 TestTimer.Start(3);
+             }
+         }*/
+
+        /*private int m_PatrolPointCount;
+        private int m_PatrolPointRange;*/
         private void Start()
         {
             m_SpaceShip= GetComponent<SpaceShip>();
             InitTimers();
+
+           /* if(m_PatrolPoints != null)
+            {
+                m_PatrolPointCount = 0;
+                m_MovePosition = m_PatrolPoints[0].Position;
+            }*/
         }
 
         private void Update()
@@ -74,15 +84,67 @@ namespace SpaceShooter
             
         }
 
+        /* [SerializeField] Path m_Path;
+         private int pathIndex;*/
+
+        // [SerializeField] private CircleArea m_PatrolZone;
+
+        /*public void SetPath(Path newPath)
+        {
+            m_Path = newPath;
+            pathIndex = 0;
+            SetPatrolBehaviour(m_Path[pathIndex]);
+            Debug.Log("SetPath");
+        }
+
+        private void GetNewPoint()
+        {
+            //pathIndex += 1;
+            Debug.Log("GetNewPoint");
+            if (m_Path.Length > pathIndex)
+            {
+                pathIndex += 1;
+                SetPatrolBehaviour(m_Path[pathIndex]);
+                Debug.Log(pathIndex);
+
+            }
+            else
+            {
+                Debug.Log(gameObject.name);
+                Destroy(gameObject);
+
+            }
+
+
+        }*/
+
         /// <summary>
         /// Setting behavour start parameters for Patrol Mode
         /// </summary>
         /// <param name="point"></param>
+        /* public void SetPatrolBehaviour(AIPointPatrol point)
+         {
+             m_AIBehaviour = AIBehaviour.Patrol;
+
+             m_PatrolPoint = point;
+             Debug.Log("SetPatrolBehaviour");
+         }*/
+
         public void SetPatrolBehaviour(AIPointPatrol point)
         {
             m_AIBehaviour = AIBehaviour.Patrol;
+
             m_PatrolPoint = point;
+            Debug.Log("SetPatrolBehaviour");
         }
+
+        /* public void SetPatrolBehaviour(CircleArea zone)
+         {
+             m_AIBehaviour = AIBehaviour.Patrol;
+
+             m_PatrolZone = zone; ;
+             Debug.Log("SetPatrolBehaviour");
+         }*/
 
         private void UpdateAI()
         {
@@ -94,20 +156,25 @@ namespace SpaceShooter
 
         private void UpdateBehaviourPatrol()
         {
+            Debug.Log("UpdateBehaviourPatrol");
+            //GetNewPoint();
             ActionFindNewMovePosition();
             ActionControlShip();
             ActionFindNewAttackTarget();
             ActionFire();
             ActionAvoidCollision();
+
         }
 
         
 
         private void ActionFire()
         {
-            if(m_SelectedTarget != null)
+            Debug.Log("StartActionFire");
+            if (m_SelectedTarget != null)
             {
-                if(m_FireTimer.IsFinished == true)
+               
+                if (m_FireTimer.IsFinished == true)
                 {
                     m_SpaceShip.Fire(TurretMode.Primary);
                     m_FireTimer.Start(m_ShootDelay);
@@ -119,12 +186,15 @@ namespace SpaceShooter
 
         private void ActionFindNewAttackTarget()
         {
-            if (m_SelectedTarget != null)
+            Debug.Log("Start ActionFindNewAttackTarget");
+            if (m_SelectedTarget == null)
             {
+                Debug.Log("ActionFindNewAttackTarget_SelectedTarget");
                 if (m_FindNewTargetTimer.IsFinished == true)
                 {
                     m_SelectedTarget = FindNearestDestructibleTarget();
                     m_FindNewTargetTimer.Start(m_ShootDelay);
+                    //m_FindNewTargetTimer.Start(m_FindNewTargetTime);
                     Debug.Log("ActionFindNewAttackTarget");
                 }
             }
@@ -134,36 +204,41 @@ namespace SpaceShooter
         private Destructible FindNearestDestructibleTarget()
         {
             float maxDist = float.MaxValue;
+
             Destructible potentialTarget = null;
 
-            foreach(var v in Destructible.AllDestructibles)
+            foreach (var v in Destructible.AllDestructibles)
             {
+                Debug.Log("foreach AllDestructibles");
                 if (v.GetComponent<SpaceShip>() == m_SpaceShip)
                     continue;
 
                 if (v.TeamId == Destructible.TeamIdNeutral)
                     continue;
 
-                if(v.TeamId == m_SpaceShip.TeamId)
+                if (v.TeamId == m_SpaceShip.TeamId)
                     continue;
 
-                float dist = Vector2.Distance(m_SpaceShip.transform.position, v.transform.position);    
-                if(dist < maxDist)
+
+                float dist = Vector2.Distance(m_SpaceShip.transform.position, v.transform.position);
+                if (dist < maxDist)
                 {
                     maxDist = dist;
                     potentialTarget = v;
-                    
+
                 }
             }
-            Debug.Log("FindNearestDestructibleTarget");
+            /*Debug.Log("FindNearestDestructibleTarget");
+            Debug.Log(potentialTarget.name);*/
             return potentialTarget;
+           
             
 
         }
 
         private void ActionAvoidCollision()
         {
-            if(Physics2D.Raycast(transform.position, transform.up, m_AvoidRayLength) == true)
+            if (Physics2D.Raycast(transform.position, transform.up, m_AvoidRayLength) == true)
             {
                 m_MovePosition = transform.position + transform.right * 100.0f;
                 Debug.Log("ActionAvoidCollision");
@@ -178,6 +253,7 @@ namespace SpaceShooter
         {
             m_SpaceShip.ThrustControl = m_NavigationLinear;
             m_SpaceShip.TorqueControl = ComputeAlignTorqueNormalized(m_MovePosition, m_SpaceShip.transform) * m_NavigationAngular;
+            Debug.Log("ActionControlShip");
         }
 
         private const float MAX_ANGLE = 45.0f;
@@ -191,7 +267,7 @@ namespace SpaceShooter
             float angle = Vector3.SignedAngle(localTargetPosition, Vector3.up, Vector3.forward); // angle between two vectors, forward = z
             angle = Mathf.Clamp(angle, - MAX_ANGLE, MAX_ANGLE) / MAX_ANGLE;
 
-            //Debug.Log(angle);
+            Debug.Log("ComputeAlignTorqueNormalized");
 
             return - angle;
         }
@@ -201,29 +277,33 @@ namespace SpaceShooter
         /// </summary>
         private void ActionFindNewMovePosition()
         {
-            if(m_AIBehaviour == AIBehaviour.Patrol)
+            Debug.Log("ActionFindNewMovePosition");
+            if (m_AIBehaviour == AIBehaviour.Patrol)
             {
-                if(m_SelectedTarget != null)
+                if (m_SelectedTarget != null)
                 {
                     m_MovePosition = m_SelectedTarget.transform.position;
-                } else
+                }
+                else
                 {
-                    if(m_PatrolPoint != null)
+                    if (m_PatrolPoint != null)
                     {
                         bool isInsidePatrolZone = (m_PatrolPoint.transform.position - transform.position).
                                     sqrMagnitude < m_PatrolPoint.Radius * m_PatrolPoint.Radius;
-                        if(isInsidePatrolZone == true)
+                        if (isInsidePatrolZone == true)
                         {
-                            if(m_RandomizeDirectionTimer.IsFinished == true)
+                            if (m_RandomizeDirectionTimer.IsFinished == true)
                             {
                                 Vector2 newPoint = UnityEngine.Random.onUnitSphere * m_PatrolPoint.Radius +
                                    m_PatrolPoint.transform.position;
 
                                 m_MovePosition = newPoint;
                                 m_RandomizeDirectionTimer.Start(m_RandomSelectMovePointTime);
-                            }                            
-                           
-                        } else
+                                Debug.Log("newpoint");
+                            }
+
+                        }
+                        else
                         {
                             m_MovePosition = m_PatrolPoint.transform.position;
                         }
@@ -231,6 +311,64 @@ namespace SpaceShooter
                 }
             }
         }
+
+
+        /*private void ActionFindNewMovePosition()
+        {
+            Debug.Log("ActionFindNewMovePosition");
+            if (m_AIBehaviour == AIBehaviour.Patrol)
+            {
+                if (m_SelectedTarget != null)
+                {
+                    m_MovePosition = m_SelectedTarget.transform.position;
+                }
+                else
+                {
+                    if (m_PatrolZone != null)
+                    {
+                        Debug.Log("InsidePatrolZone");
+                        bool isInsidePatrolZone = (m_PatrolZone.transform.position - transform.position).
+                                    sqrMagnitude < m_PatrolZone.Radius * m_PatrolZone.Radius;
+                        if (isInsidePatrolZone == true)
+                        {
+                            if (m_RandomizeDirectionTimer.IsFinished == true)
+                            {
+                                m_MovePosition = (Vector3)m_PatrolZone.GetRandomInsideZone();                               
+                                m_RandomizeDirectionTimer.Start(m_RandomSelectMovePointTime);
+                                Debug.Log("newpoint");
+                            }
+
+                        }
+                        else
+                        {
+                            m_MovePosition = m_PatrolZone.transform.position;
+                        }
+                    }
+                    else if(m_PatrolPoints != null)
+                    {
+                        Debug.Log("PatrolPointsMovement");
+                        if (m_PatrolPointCount >= m_PatrolPoints.Length)
+                        {
+                            m_PatrolPointCount = 0;
+                            Debug.Log("m_PatrolPointCount = 0");
+                        }
+
+                        if (m_PatrolPointCount <= m_PatrolPoints.Length)
+                        {
+                            
+                            m_MovePosition = m_PatrolPoints[m_PatrolPointCount].Position;
+
+
+                            Debug.Log("start " + m_PatrolPointCount);
+                            m_PatrolPointCount++;
+                            Debug.Log("end " + m_PatrolPointCount); 
+                        }                         
+
+
+                    }
+                }
+            }
+        }*/
 
         #region Timers
 
@@ -246,6 +384,7 @@ namespace SpaceShooter
             m_RandomizeDirectionTimer = new Timer(m_RandomSelectMovePointTime);
             m_FireTimer = new Timer(m_ShootDelay);
             m_FindNewTargetTimer = new Timer(m_FindNewTargetTime);
+            Debug.Log("InitTimers");
         }
 
         private void UpdateTimers()
@@ -253,6 +392,7 @@ namespace SpaceShooter
             m_RandomizeDirectionTimer.RemoveTime(Time.deltaTime);
             m_FireTimer.RemoveTime(Time.deltaTime);
             m_FindNewTargetTimer.RemoveTime(Time.deltaTime);
+            Debug.Log("UpdateTimers");
         }
 
         #endregion

@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: c8b80b0b885a43a4fb856fcd841ba235, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 24f34ebe479ade249bb78bc2c1d10d11, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -154,13 +154,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7fd51e01adea0548b4d05f3f9d72b66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_AIBehaviour: 0
-  m_NavigationLinear: 0
-  m_NavigationAngular: 0
-  m_RandomSelectMovePointTime: 0
+  m_AIBehaviour: 1
+  m_NavigationLinear: 0.03
+  m_NavigationAngular: 0.08
+  m_RandomSelectMovePointTime: 20
   m_FindNewTargetTime: 0
-  m_ShootDelay: 0
-  AvoidRayLength: 0
+  m_ShootDelay: 1
+  m_AvoidRayLength: 2.4
+  m_PatrolPoint: {fileID: 0}
 --- !u!50 &3037646142067575782
 Rigidbody2D:
   serializedVersion: 4
@@ -197,6 +198,7 @@ MonoBehaviour:
   m_Nickname: Player
   m_Indestructible: 0
   m_HitPoints: 100
+  m_TeamId: 0
   m_EventOnDeath:
     m_PersistentCalls:
       m_Calls: []

@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace SpaceShooter
 {
-    public class Player : MonoBehaviour
+    public class Player : SingletonBase<Player>
     {
         [SerializeField] private int m_NumLives;
         [SerializeField] private SpaceShip m_Ship;
@@ -15,27 +15,40 @@ namespace SpaceShooter
         [SerializeField] private CameraController m_CameraController;
         [SerializeField] private MovementController m_MovementController;
 
+        public SpaceShip ActiveShip => m_Ship;
+
         private void Start()
         {
             m_Ship.EventOnDeath.AddListener(OnShipDeath);
+            Debug.Log($"start m_NumLives = {m_NumLives}");
+            m_NumLives++;
         }
 
         private void OnShipDeath()
         {
-            m_NumLives --;
+            if(m_Ship.EventOnDeath != null)
+                m_NumLives--;
+                Debug.Log($"m_NumLives = {m_NumLives}");
+
             if(m_NumLives > 0)
-            {
                 Respawn();
-            }
+
+                //Invoke("Respawn", 2);
+            
+
+
+
         }
 
-        private void Respawn()
+        public void Respawn()
         {
             var newPlayerShip = Instantiate(m_PlayerShipPrefab);
             m_Ship = newPlayerShip.GetComponent<SpaceShip>();
 
             m_CameraController.SetTarget(m_Ship.transform);
             m_MovementController.SetTargetShip(m_Ship);
+
+            m_Ship.EventOnDeath.AddListener(OnShipDeath);
         }
     }
 }
