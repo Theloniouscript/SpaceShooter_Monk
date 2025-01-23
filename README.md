@@ -19,5 +19,4 @@ The game combines physics-based mechanics and a variety of shooting mechanics fo
 ## Tech Stack  
 - **Engine**: Unity  
 - **Programming Language**: C#  
-- **Art and Design**: Custom assets and effects  
-
+- **Art and Design**: Assets from Unity Asset Store, custom effects created by me  
